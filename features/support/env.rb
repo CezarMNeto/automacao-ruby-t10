@@ -4,13 +4,13 @@ require 'selenium-webdriver'
 require 'site_prism'
 require 'pry'
 require_relative 'prints.rb'
-
-World(Prints)
+require_relative 'page_helpers.rb'
 
 ENVIRONMENT = ENV['ENVIRONMENT']
 puts "Environment >> #{ENVIRONMENT}"
 
 CONFIG = YAML.load_file(File.dirname(__FILE__) + "/environments/#{ENVIRONMENT}.yml")
+World(Prints, Pages)
 
 Capybara.configure do |config|
     config.default_driver = :selenium_chrome
