@@ -1,4 +1,4 @@
-Dado('que eu esteja na tela de login') do 
+  Dado('que eu esteja na tela de {string}') do |string|
     login.load
   end
   
@@ -7,10 +7,9 @@ Dado('que eu esteja na tela de login') do
   end
   
   Quando('clico no botão {string}') do |string|
-    pending # Write code here that turns the phrase above into concrete actions
+    login.click_button
   end
   
   Entao('devo ser redirecionado a tela {string}') do |string|
-    pending # Write code here that turns the phrase above into concrete actions
+    login.validar_url
   end
-  

@@ -3,13 +3,22 @@ class Login < SitePrism::Page
     include Capybara::DSL
 
     set_url '/login'
-    element :mail, 'input[@id="email"]'
-    element :password, '//*[@id="password"]'
-    element :button_entrar, '/html/body/flt-glass-pane//input'
+    element :mail, 'input[name="email"]'
+    element :password, '#password'
+    element :button_entrar, '#entrar'
+    element :sair, :xpath, '//button[text()="Sair"]'
 
     def to_fill_in_login(home)
-        mail.set '5974f658-ec5f-476c-9217-49efac181aa0_Paulo@yahoo.com.br'
-        password.set 'TESTE@postman123'
+        mail.set 'palagio@palagio.com'
+        password.set 'Ga123@'
     end
-    
+
+    def click_button
+        button_entrar.click
+    end
+
+    def validar_url
+        expect(page).to have_current_path('https://next.qacoders-academy.com.br/home', url: true)
+        expect(sair).to have_content('Sair')
+    end    
 end
